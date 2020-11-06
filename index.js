@@ -6,12 +6,14 @@ require('dotenv').config();
 
 //Routes
 const Route_User = require('./route/user');
+const Route_Product = require('./route/product');
+const Image = require('./route/image');
 
 //using
 const app = express();
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 app.options('*', cors());
 app.use(cors());
 
@@ -27,6 +29,8 @@ mongoose
 	});
 
 app.use('/user', Route_User);
+app.use('/product', Route_Product);
+app.use('/image', Image);
 
 app.listen(process.env.PORT, () => {
 	console.log(`Successfuly Connected to PORT ${process.env.PORT}`);
